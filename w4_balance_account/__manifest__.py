@@ -2,16 +2,20 @@
 
 {
     'name': 'Balance Account for Swiss Accounting Auditing',
-    "version": "17.0",
+    'summary': """
+       Our balance account module for Odoo automates balance account integration for every booking line, delivering transparent, audit-proof financial reports.""",
     'depends': ['account','account_reports'],
-    'description': "Balance Account for Swiss Accounting Auditing",
-    'author': 'Sagar Jayswal',
-    'company': 'w-4.sk',
-    'website': 'https://www.w-4.ch',
-    "category": "Apps/Human Resources",
-    'summary': "Balance Account for Swiss Accounting Auditing",
+    'description': "Accounting",
+    'author': 'W4 Services AG',
+    'website': "https://just-odoo.agency/",
+    "category": "Accounting",
+    'price': '450',
+    'currency': 'EUR',
+    'license': 'OPL-1',
+    'version': '17.0.1.1',
     'demo': [],
     'data': [],
     'installable': True,
     'application': False,
+    'images': ['static/description/cover.gif']
 }
