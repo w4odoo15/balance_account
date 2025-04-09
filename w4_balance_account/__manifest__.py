@@ -3,7 +3,7 @@
 {
     'name': 'Balance Account for Swiss Accounting Auditing',
     'summary': """
-       Our balance account module for Odoo automates balance account integration for every booking line, delivering transparent, audit-proof financial reports.""",
+       Automates balance account integration for every booking line""",
     'depends': ['account','account_reports'],
     'description': "Accounting",
     'author': 'W4 Services AG',
