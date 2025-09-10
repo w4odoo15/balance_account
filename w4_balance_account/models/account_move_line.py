@@ -33,7 +33,6 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
         """ Construct a query retrieving the account.move.lines when expanding a report line with or without the load more. """
         additional_domain = [('account_id', 'in', expanded_account_ids)] if expanded_account_ids is not None else None
         queries = []
-        lang = self.env.user.lang or get_lang(self.env).code
         journal_name = self.env['account.journal']._field_to_sql('journal', 'name')
         for column_group_key, group_options in report._split_options_per_column_group(options).items():
             query = report._get_report_query(group_options, domain=additional_domain, date_scope='strict_range')
