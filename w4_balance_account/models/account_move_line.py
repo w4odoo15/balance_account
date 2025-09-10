@@ -62,7 +62,7 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
             where_params = query_params
 
 
-            ct_query = report._get_query_currency_table(group_options)
+            ct_query = report._get_currency_table(group_options)
             query = f'''
                 (SELECT
                     account_move_line.id,
