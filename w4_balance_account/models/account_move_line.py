@@ -62,7 +62,7 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                     SUM(ROUND(account_move_line.balance * currency_table.rate, currency_table.precision)) AS balance,
                     MIN(move.name)                          AS move_name,
                     MIN(company.currency_id)                AS company_currency_id,
-                    Min(account_move_line.bal_acc)          AS bal_acc
+                    MiN(account_move_line.bal_acc)          AS bal_acc
                     MIN(partner.name)                       AS partner_name,
                     MIN(move.move_type)                     AS move_type,
                     MIN(account.code)                       AS account_code,
