@@ -47,7 +47,7 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                     account_move_line.id,
                     account_move_line.date,
                     account_move_line.date_maturity,
-                    account_move_line.name AS line_name,
+                    account_move_line.name AS name,
                     account_move_line.ref,
                     account_move_line.company_id,
                     account_move_line.account_id,
