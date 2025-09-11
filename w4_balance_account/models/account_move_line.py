@@ -57,30 +57,30 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                     SUM(account_move_line.amount_currency)  AS amount_currency,
                     MIN(COALESCE(account_move_line.invoice_date, account_move_line.date))                 AS invoice_date,
                     account_move_line.date                                                                AS date,
-                    SUM(ROUND(account_move_line.debit * currency_table.rate, currency_table.precision))   AS debit,
-                    SUM(ROUND(account_move_line.credit * currency_table.rate, currency_table.precision))  AS credit,
-                    SUM(ROUND(account_move_line.balance * currency_table.rate, currency_table.precision)) AS balance,
+                    SUM(%(debit_select)s)                   AS debit,
+                    SUM(%(credit_select)s)                  AS credit,
+                    SUM(%(balance_select)s)                 AS balance,
                     MIN(move.name)                          AS move_name,
                     MIN(company.currency_id)                AS company_currency_id,
-                    MiN(account_move_line.bal_acc)          AS bal_acc,
+                    MIN(account_move_line.bal_acc)          AS bal_acc,
                     MIN(partner.name)                       AS partner_name,
                     MIN(move.move_type)                     AS move_type,
-                    MIN(account.code)                       AS account_code,
-                    MIN({account_name})                     AS account_name,
+                    MIN(%(account_code)s)                   AS account_code,
+                    MIN(%(account_name)s)                   AS account_name,
+                    MIN(%(account_type)s)                   AS account_type,
                     MIN(journal.code)                       AS journal_code,
-                    MIN({journal_name})                     AS journal_name,
+                    MIN(%(journal_name)s)                   AS journal_name,
                     MIN(full_rec.id)                        AS full_rec_name,
-                    %s                                      AS column_group_key
-                FROM {tables}
+                    %(column_group_key)s                    AS column_group_key
+                FROM %(table_references)s
                 JOIN account_move move                      ON move.id = account_move_line.move_id
-                LEFT JOIN {ct_query}                        ON currency_table.company_id = account_move_line.company_id
+                %(currency_table_join)s
                 LEFT JOIN res_company company               ON company.id = account_move_line.company_id
                 LEFT JOIN res_partner partner               ON partner.id = account_move_line.partner_id
-                LEFT JOIN account_account account           ON account.id = account_move_line.account_id
                 LEFT JOIN account_journal journal           ON journal.id = account_move_line.journal_id
                 LEFT JOIN account_full_reconcile full_rec   ON full_rec.id = account_move_line.full_reconcile_id
-                WHERE {where_clause}
-                GROUP BY account_move_line.id, account_move_line.date, account_move_line.bal_acc
+                WHERE %(search_condition)s
+                GROUP BY account_move_line.id, account_move_line.date
                 ORDER BY account_move_line.date, move_name, account_move_line.id
                 ''',
                 account_code=account_code,
