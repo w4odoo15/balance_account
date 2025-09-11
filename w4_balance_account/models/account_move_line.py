@@ -46,9 +46,9 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                 SELECT
                     account_move_line.id,
                     account_move_line.date,
-                    account_move_line.date_maturity    
-                    account_move_line.name             
-                    account_move_line.ref              
+                    account_move_line.date_maturity,    
+                    account_move_line.name,             
+                    account_move_line.ref,              
                     account_move_line.company_id,       
                     account_move_line.account_id,       
                     account_move_line.payment_id,       
@@ -56,7 +56,7 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                     account_move_line.currency_id,      
                     account_move_line.amount_currency,
                     COALESCE(account_move_line.invoice_date, account_move_line.date)                 AS invoice_date,
-                    account_move_line.date             AS date,
+                    account_move_line.date                                                           AS date,
                     SUM(%(debit_select)s)              AS debit,
                     SUM(%(credit_select)s)             AS credit,
                     SUM(%(balance_select)s)            AS balance,
