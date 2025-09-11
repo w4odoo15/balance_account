@@ -13,7 +13,7 @@
             <field name="default_opening_date_filter">this_month</field>
             <field name="search_bar" eval="True"/>
             <field name="load_more_limit" eval="80"/>
-            <field name="custom_handler_model_id" ref="account_reports.general_ledger_report"/>
+            <field name="custom_handler_model_id" ref="model_account_general_ledger_report_handler"/>
             <field name="column_ids">
                 <record id="general_ledger_report_date" model="account.report.column">
                     <field name="name">Invoice Date</field>
