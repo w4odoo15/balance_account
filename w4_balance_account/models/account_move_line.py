@@ -80,8 +80,7 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                 LEFT JOIN account_journal journal           ON journal.id = account_move_line.journal_id
                 LEFT JOIN account_full_reconcile full_rec   ON full_rec.id = account_move_line.full_reconcile_id
                 WHERE %(search_condition)s
-                GROUP BY account_move_line.id, account_move_line.date, account_move_line.bal_acc
-                ORDER BY account_move_line.date, account_move_line.move_name, account_move_line.id
+                GROUP BY account_move_line.id, account_move_line.date, account_move_line.date_maturity, account_move_line.name, account_move_line.ref, account_move_line.company_id, account_move_line.account_id, account_move_line.payment_id, account_move_line.partner_id, account_move_line.currency_id, account_move_line.invoice_date, move.name, company.currency_id, account_move_line.bal_acc, partner.name, move.move_type, journal.code, full_rec.id                ORDER BY account_move_line.date, account_move_line.move_name, account_move_line.id
                 ''',
                 account_code=account_code,
                 account_name=account_name,
