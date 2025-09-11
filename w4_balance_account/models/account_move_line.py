@@ -64,7 +64,6 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                     account_move_line.bal_acc AS bal_acc,
                     partner.name AS partner_name,
                     move.move_type AS move_type,
-                    account.code AS account_code,
                     %(account_name)s AS account_name,
                     journal.code AS journal_code,
                     %(journal_name)s AS journal_name,
