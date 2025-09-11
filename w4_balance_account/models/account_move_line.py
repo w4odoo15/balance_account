@@ -56,9 +56,9 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                     account_move_line.currency_id,
                     account_move_line.amount_currency,
                     COALESCE(account_move_line.invoice_date, account_move_line.date) AS invoice_date,
-                    ROUND(account_move_line.debit * currency_table.rate, currency_table.precision) AS debit,
-                    ROUND(account_move_line.credit * currency_table.rate, currency_table.precision) AS credit,
-                    ROUND(account_move_line.balance * currency_table.rate, currency_table.precision) AS balance,
+                    account_move_line.debit  AS debit,
+                    account_move_line.credit AS credit,
+                    account_move_line.balance AS balance,
                     move.name AS move_name,
                     company.currency_id AS company_currency_id,
                     account_move_line.bal_acc AS bal_acc,
@@ -88,9 +88,6 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                 column_group_key=column_group_key,
                 table_references=query.from_clause,
                 currency_table_join=report._currency_table_aml_join(group_options),
-                debit_select=report._currency_table_apply_rate(SQL("account_move_line.debit")),
-                credit_select=report._currency_table_apply_rate(SQL("account_move_line.credit")),
-                balance_select=report._currency_table_apply_rate(SQL("account_move_line.balance")),
                 search_condition=query.where_clause,
             )
             queries.append(sql_query)
