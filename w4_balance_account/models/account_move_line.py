@@ -106,5 +106,26 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
 
         return full_query
 
+    def _get_lines(self, report, options, expanded_account_ids=None, offset=0, limit=None):
+        query = self._get_query_amls(report, options, expanded_account_ids, offset, limit)
+        self.env.cr.execute(query)
+        result = self.env.cr.dictfetchall()
+        lines = []
+        for row in result:
+            lines.append({
+                'id': row['id'],
+                'date': row['date'],
+                'invoice_date': row.get('invoice_date'),
+                'bal_acc': row.get('bal_acc'),
+                'communication': row.get('communication'),
+                'partner_name': row.get('partner_name'),
+                'amount_currency': row.get('amount_currency'),
+                'debit': row.get('debit'),
+                'credit': row.get('credit'),
+                'balance': row.get('balance'),
+                # ...add other fields as needed...
+            })
+        return lines
+
     # ...existing code...
 
