@@ -46,32 +46,32 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                 SELECT
                     account_move_line.id,
                     account_move_line.date,
-                    MIN(account_move_line.date_maturity)    AS date_maturity,
-                    MIN(account_move_line.name)             AS name,
-                    MIN(account_move_line.ref)              AS ref,
-                    MIN(account_move_line.company_id)       AS company_id,
-                    MIN(account_move_line.account_id)       AS account_id,
-                    MIN(account_move_line.payment_id)       AS payment_id,
-                    MIN(account_move_line.partner_id)       AS partner_id,
-                    MIN(account_move_line.currency_id)      AS currency_id,
+                    account_move_line.date_maturity    AS date_maturity,
+                    account_move_line.name             AS name,
+                    account_move_line.ref              AS ref,
+                    account_move_line.company_id       AS company_id,
+                    account_move_line.account_id       AS account_id,
+                    account_move_line.payment_id       AS payment_id,
+                    account_move_line.partner_id       AS partner_id,
+                    account_move_line.currency_id      AS currency_id,
                     SUM(account_move_line.amount_currency)  AS amount_currency,
-                    MIN(COALESCE(account_move_line.invoice_date, account_move_line.date)) AS invoice_date,
+                    COALESCE(account_move_line.invoice_date, account_move_line.date) AS invoice_date,
                     account_move_line.date                  AS date,
                     SUM(%(debit_select)s)                   AS debit,
                     SUM(%(credit_select)s)                  AS credit,
                     SUM(%(balance_select)s)                 AS balance,
-                    MIN(move.name)                          AS move_name,
-                    MIN(company.currency_id)                AS company_currency_id,
-                    MIN(account_move_line.bal_acc)          AS bal_acc,
-                    MIN(partner.name)                       AS partner_name,
-                    MIN(move.move_type)                     AS move_type,
-                    MIN(%(account_code)s)                   AS account_code,
-                    MIN(%(account_name)s)                   AS account_name,
-                    MIN(%(account_type)s)                   AS account_type,
-                    MIN(journal.code)                       AS journal_code,
-                    MIN(%(journal_name)s)                   AS journal_name,
-                    MIN(full_rec.id)                        AS full_rec_name,
-                    %(column_group_key)s                    AS column_group_key
+                    move.name                          AS move_name,
+                    company.currency_id                AS company_currency_id,
+                    account_move_line.bal_acc          AS bal_acc,
+                    partner.name                       AS partner_name,
+                    move.move_type                     AS move_type,
+                    %(account_code)s                   AS account_code,
+                    %(account_name)s                   AS account_name,
+                    %(account_type)s                   AS account_type,
+                    journal.code                       AS journal_code,
+                    %(journal_name)s                   AS journal_name,
+                    full_rec.id                        AS full_rec_name,
+                    %(column_group_key)s               AS column_group_key
                 FROM %(table_references)s
                 JOIN account_move move                      ON move.id = account_move_line.move_id
                 %(currency_table_join)s
@@ -80,8 +80,7 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
                 LEFT JOIN account_journal journal           ON journal.id = account_move_line.journal_id
                 LEFT JOIN account_full_reconcile full_rec   ON full_rec.id = account_move_line.full_reconcile_id
                 WHERE %(search_condition)s
-                GROUP BY account_move_line.id, account_move_line.date
-                ORDER BY account_move_line.date, move_name, account_move_line.id
+                ORDER BY account_move_line.date, account_move_line.move_name, account_move_line.id
                 ''',
                 account_code=account_code,
                 account_name=account_name,
