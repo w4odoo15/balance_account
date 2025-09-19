@@ -18,7 +18,7 @@
 
 
         <!-- Define the new column -->
-        <record id="general_ledger_report_bal_acc" model="account.report.column">
+        <record id="general_ledger_report_bal_acc" model="account.report.column" sequence="2">
             <field name="report_id" ref="account_reports.general_ledger_report"/>
             <field name="name">G-Konto</field>
             <field name="expression_label">bal_acc</field>
