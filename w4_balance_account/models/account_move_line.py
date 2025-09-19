@@ -110,4 +110,3 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
         _logger.info("Generated SQL query: %s", full_query)
         _logger.info("Query execution started")
         return full_query
-
