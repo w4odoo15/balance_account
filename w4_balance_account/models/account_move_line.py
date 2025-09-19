@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+import logging
 from odoo import models, fields, api, _
 from odoo.tools import get_lang, SQL
 
+_logger = logging.getLogger(__name__)
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
@@ -24,6 +26,8 @@ class AccountMoveLine(models.Model):
                    bal_acc = line.account_id.code
                 else:
                     bal_acc = 'div'
+
+            _logger.info("bal_acc %s", bal_acc)
             rec.bal_acc = bal_acc
 
 class GeneralLedgerCustomHandler(models.AbstractModel):
@@ -103,5 +107,7 @@ class GeneralLedgerCustomHandler(models.AbstractModel):
         if limit:
             full_query = SQL('%s LIMIT %s ', full_query, limit)
 
+        _logger.info("Generated SQL query: %s", full_query)
+        _logger.info("Query execution started")
         return full_query
 
