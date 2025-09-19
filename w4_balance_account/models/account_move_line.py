@@ -14,6 +14,11 @@ class AccountMoveLine(models.Model):
     def _compute_bal_acc(self):
         for rec in self:
             bal_acc = 'div'
+
+            _logger.info("Processing record: %s, Debit: %s, Credit: %s", rec.id, rec.debit, rec.credit)
+            _logger.info("rec.move_id: %s", rec.move_id)
+            _logger.info("debit: %s", rec.debit)
+            
             if rec.move_id and rec.debit > 0.0:
                 line = self.env['account.move.line'].search([('move_id','=',rec.move_id.id),('id','!=',rec.id),('credit','=',rec.debit)],limit=1)
                 if line:
