@@ -17,45 +17,60 @@
         </record>
 
         <record id="general_ledger_report_date" model="account.report.column">
+            <field name="report_id" ref="general_ledger_report"/>
+
             <field name="name">Invoice Date</field>
             <field name="expression_label">invoice_date</field>
             <field name="figure_type">date</field>
         </record>
         <!-- Define the new column -->
         <record id="general_ledger_report_bal_acc" model="account.report.column">
+            <field name="report_id" ref="general_ledger_report"/>
             <field name="name">G-Konto</field>
             <field name="expression_label">bal_acc</field>
             <field name="figure_type">string</field>
         </record>
 
         <record id="general_ledger_report_communication" model="account.report.column">
+            <field name="report_id" ref="general_ledger_report"/>
             <field name="name">Communication</field>
             <field name="expression_label">communication</field>
             <field name="figure_type">string</field>
         </record>
 
         <record id="general_ledger_report_partner_name" model="account.report.column">
+            <field name="report_id" ref="general_ledger_report"/>
+
             <field name="name">Partner</field>
             <field name="expression_label">partner_name</field>
             <field name="figure_type">string</field>
         </record>
 
         <record id="general_ledger_report_amount_currency" model="account.report.column">
+            <field name="report_id" ref="general_ledger_report"/>
+
             <field name="name">Currency</field>
             <field name="expression_label">amount_currency</field>
         </record>
 
         <record id="general_ledger_report_debit" model="account.report.column">
+            <field name="report_id" ref="general_ledger_report"/>
+
             <field name="name">Debit</field>
             <field name="expression_label">debit</field>
         </record>
 
         <record id="general_ledger_report_credit" model="account.report.column">
+            <field name="report_id" ref="general_ledger_report"/>
+
             <field name="name">Credit</field>
             <field name="expression_label">credit</field>
         </record>
 
         <record id="general_ledger_report_balance" model="account.report.column">
+            <field name="report_id" ref="general_ledger_report"/>
+
+
             <field name="name">Balance</field>
             <field name="expression_label">balance</field>
         </record>
