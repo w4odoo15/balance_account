@@ -9,7 +9,7 @@ class AccountMoveColumn(models.Model):
     _inherit="account.move.column"
 
     def init(self):
-       record = self.env['account.move.column'].search([('name', "=", "date")])
+       record = self.env['account.move.column'].search([('name', "=", "G-Konto")])
 
        current_ids = self.report_ids.ids
        
