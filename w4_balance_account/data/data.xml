@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data onupdate="1">
+    <data>
     <!-- Report -->
         <record id="general_ledger_report" model="account.report">
             <field name="name">General Ledger</field>
