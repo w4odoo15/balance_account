@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    <data onupdate="1">
     <!-- Report -->
         <record id="general_ledger_report" model="account.report">
             <field name="name">General Ledger</field>
@@ -15,6 +15,13 @@
             <field name="load_more_limit" eval="80"/>
             <field name="custom_handler_model_id" ref="model_account_general_ledger_report_handler"/>
         </record>
+
+        <record id="general_ledger_report_date" model="account.report.column">
+            <field name="report_id" ref="account_reports.general_ledger_report"/>
+            <field name="name">Datum</field>
+            <field name="expression_label">date</field>
+            <field name="figure_type">date</field>
+         </record>
 
 
         <!-- Define the new column -->
