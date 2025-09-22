@@ -15,6 +15,8 @@
     'version': '18.0.0.1',
     'demo': [],
     'data': ["data/data.xml",],
+     "post_init_hook": "post_init_hook",
+
     'installable': True,
     'application': False,
     'images': ['static/description/cover.gif']

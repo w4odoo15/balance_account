@@ -4,25 +4,7 @@ import logging
 from odoo import models, fields, api, _
 from odoo.tools import get_lang, SQL
 
-_logger = logging.getLogger(__name__)
-class AccountMoveColumn(models.Model):
-    _inherit="account.move.column"
-
-    def init(self):
-       record = self.env['account.move.column'].search([('name', "=", "G-Konto")])
-
-       current_ids = self.report_ids.ids
-       
-       new_ids = []
-       
-       if current_ids and len(current_ids) > 2:
-            new_ids.append(current_ids[0])
-            new_ids.append(record.id)
-            new_ids.extend(x for x in current_ids if x != current_ids[0] and x != current_ids[1])
-
-            self.report_ids = [(6, 0, new_ids)]
-
-    
+_logger = logging.getLogger(__name__)   
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
