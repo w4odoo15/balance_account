@@ -2,10 +2,13 @@
 <data>
     <record id="account_move_line_inherit" model="ir.ui.view">
         <field name="name">account.move.line.view.form.inherit</field>
-        <field name="model">model.name</field>
-        <field name="inherit_id" ref="inherit_module_name.account_move_line"/>
+        <field name="model">account.report</field>
+        <field name="inherit_id" ref="account_reports.account_report_form"/>
         <field name="arch" type="xml">
-            
+            <xpath expr="//line_ids[@type='one2many']" position="inside">
+                <field name="" />
+                
+            </xpath>
         </field>
     </record>
     
