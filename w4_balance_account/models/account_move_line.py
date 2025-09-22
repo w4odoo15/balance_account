@@ -5,15 +5,6 @@ from odoo import models, fields, api, _
 from odoo.tools import get_lang, SQL
 
 _logger = logging.getLogger(__name__)
-
-class AccountMoveColumn(models.Model):
-    _inherit = "account.move.column"
-    sequence = fields.Integer(string="Sequence", default=10)
-    _order = "sequence asc"
-
-
-
-
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
